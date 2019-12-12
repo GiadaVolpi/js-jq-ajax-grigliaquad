@@ -14,19 +14,20 @@ $ (document).ready (function () {
     $ (".quad").click (function () {
         var that = $(this);
 
-
         $.ajax ({
             "url": "https://flynn.boolean.careers/exercises/api/random/int",
             "method": "GET",
             "success": function (data) {
                 var estrazione = data.response;
                 console.log("Il numero estratto è: " + estrazione);
-                if (estrazione <= 5) {
-                    that.addClass ("giallo");
-                    that.append (estrazione);
-                } else {
-                    that.addClass ("verde");
-                    that.append (estrazione);
+                if (!that.hasClass('giallo') && !that.hasClass('verde')) {
+                    if (estrazione <= 5) {
+                        that.addClass ("giallo");
+                        that.append (estrazione);
+                    } else {
+                        that.addClass ("verde");
+                        that.append (estrazione);
+                    }
                 }
             },
             "error": function () {
